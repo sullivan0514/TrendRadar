@@ -1,8 +1,8 @@
-app:
+app   应用程序:
   version_check_url: "https://raw.githubusercontent.com/sansan0/TrendRadar/refs/heads/master/version"
   show_version_update: true # 控制显示版本更新提示，如果 false，则不接受新版本提示
 
-crawler:
+crawler   履带:
   request_interval: 1000 # 请求间隔(毫秒)
   enable_crawler: true # 是否启用爬取新闻功能，如果 false，则直接停止程序
   use_proxy: false # 是否启用代理，false 时为关闭
@@ -24,13 +24,13 @@ crawler:
 #   • 适用场景：避免重复信息干扰
 
 # 推送模式选择
-report:   报告:
-  mode   模式: "incremental"   “增量” # 可选: "daily"|"incremental"|"current"
+report   报告:   报告:
+  mode   模式: "incremental"   “增量”   “增量” # 可选: "daily"|"incremental"|"current"
   rank_threshold: 5 # 排名高亮阈值
   sort_by_position_first: false # 排序优先级：true=先按配置位置排序，false=先按热点条数排序
   max_news_per_keyword: 0 # 每个关键词最大显示数量，0=不限制
 
-notification:   通知:
+notification   通知:   通知:
   enable_notification: true # 是否启用通知功能，如果 false，则不发送手机通知
   message_batch_size: 4000 # 消息分批大小（字节）(这个配置别动)
   dingtalk_batch_size: 20000 # 钉钉消息分批大小（字节）(这个配置也别动)
@@ -46,12 +46,12 @@ notification:   通知:
   #   - 只想在工作日白天接收推送（如 09:00-18:00）
   #   - 希望在晚上固定时间收到汇总（如 20:00-22:00）
   push_window:
-    enabled: false  # 是否启用推送时间窗口控制，默认关闭
+    enabled   启用: false  # 是否启用推送时间窗口控制，默认关闭
     # 注意：GitHub Actions 执行时间不稳定，时间范围建议至少留足 2 小时
     # 如果想要精准的定时推送，建议使用 Docker 部署在个人服务器上
     time_range:
-      start: "20:00"  # 推送时间窗口开始（北京时间）
-      end: "22:00"    # 推送时间窗口结束（北京时间）
+      start   开始: "20:00"  # 推送时间窗口开始（北京时间）
+      end   结束: "22:00"    # 推送时间窗口结束（北京时间）
     once_per_day: true  # 每天在时间窗口内只推送一次，如果 false，则窗口内每次执行都推送
     push_record_retention_days: 7  # 推送记录保留天数
 
@@ -59,63 +59,150 @@ notification:   通知:
   #
   # 🔴 请务必妥善保管好 webhooks，不要公开!!!
   # 🔴 如果你以 fork 的方式将本项目部署在 GitHub 上，请勿在下面填写任何 webhooks
-  # 🔴 而是将 webhooks 填入 GitHub Secret（Settings → Secrets and variables → Actions）
+  #🔴而是将webhooks填入GitHub Secret（设置→秘密和变量→操作）# 🔴 而是将 webhooks 填入 GitHub Secret（Settings → Secrets and variables → Actions）#🔴而是将webhooks填入GitHub Secret（设置→秘密和变量→操作）
   # 🔴 否则：
   #    - 轻则：手机上收到大量垃圾广告推送
   #    - 重则：webhook 被滥用造成严重安全隐患（如恶意消息轰炸、钓鱼链接等）
   #
-  # 🔴 NEVER expose webhooks publicly!!!
-  # 🔴 If deploying via GitHub fork, DO NOT fill webhooks below
-  # 🔴 Instead, add them to GitHub Secrets (Settings → Secrets and variables → Actions)
-  # 🔴 Consequences of exposure:
-  #    - Minor: Spam notifications flooding your devices
-  #    - Severe: Webhook abuse leading to security incidents (malicious messages, phishing links, etc.)
+  #🔴永远不要公开webhooks !！# 🔴 NEVER expose webhooks publicly!!!
+  # 🔴 If deploying via GitHub fork, DO NOT fill webhooks below#🔴如果通过GitHub fork部署，请不要在下面填充webhooks
+  # 🔴 Instead, add them to GitHub Secrets (Settings → Secrets and variables → Actions)#🔴相反，将它们添加到GitHub Secrets（设置→秘密和变量→操作）
+  # 🔴 Consequences of exposure:#🔴曝光的后果：
+  #    - Minor: Spam notifications flooding your devices# -次要：垃圾邮件通知充斥你的设备
+  #    - Severe: Webhook abuse leading to security incidents (malicious messages, phishing links, etc.)#严重：滥用Webhook导致安全事件（恶意信息、钓鱼链接等）
   #
-  webhooks:
+  webhooks:   人:
     feishu_url: "" # 飞书机器人的 webhook URL
     dingtalk_url: "" # 钉钉机器人的 webhook URL
     wework_url: "" # 企业微信机器人的 webhook URL
-    wework_msg_type: "markdown" # 企业微信消息类型：markdown(群机器人) 或 text(个人微信应用)
+    wework_msg_type: "markdown"   “减价”   “减价” # 企业微信消息类型：markdown(群机器人) 或 text(个人微信应用)
     telegram_bot_token: "" # Telegram Bot Token
-    telegram_chat_id: "" # Telegram Chat ID
+    telegram_chat_id: "" # Telegram Chat IDtelegram_chat_id: "" # Telegram聊天IDtelegram_chat_id: "" # Telegram聊天IDtelegram_chat_id: "" # Telegram聊天ID
     email_from: "" # 发件人邮箱地址
     email_password: "" # 发件人邮箱密码或授权码
     email_to: "" # 收件人邮箱地址，多个收件人用逗号分隔
     email_smtp_server: "" # SMTP服务器地址（可选，留空自动识别）
     email_smtp_port: "" # SMTP端口（可选，留空自动识别）
-    ntfy_server_url: "https://ntfy.sh" # ntfy服务器地址，默认使用公共服务，可改为自托管地址
+    ntfy_server_url: "https://ntfy.sh"   "https:/Ntfy_server_url: "https:/
+tfy.sh" "https:/
+tfy.sh" # ntfy服务器地址，默认使用公共服务，可改为自托管地址
     ntfy_topic: "" # ntfy主题名称
     ntfy_token: "" # ntfy访问令牌（可选，用于私有主题）
     bark_url: "" # Bark推送URL（格式：https://api.day.app/your_device_key 或自建服务器地址）
     slack_webhook_url: "" slack_webhook_url: "" # Slack传入的Webhook URL（格式：https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX）# Slack Incoming Webhook URL（格式：https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX）
 
 # 用于让关注度更高的新闻在更前面显示，即用算法重新组合不同平台的热搜排序形成你侧重的热搜，合起来是 1 就行
-weight:
+weight   重量:   重量:
   rank_weight: 0.6 # 排名权重
   frequency_weight: 0.3 # 频次权重
   hotness_weight: 0.1 # 热度权重
 
 # name 可以定义任意名称，只具有显示作用，即使项目运行了几天后，忽然改掉 name 也不会影响代码的正常运行
-platforms:
+# name 可以定义任意名称，只具有显示作用，即使项目运行了几天后，忽然改掉 name 也不会影响代码的正常运行
+platforms:   平台:
+  
+  # === 综合新闻媒体类 ===
   - id: "toutiao"
     name: "今日头条"
   - id: "baidu"
     name: "百度热搜"
-  - id: "wallstreetcn-hot"
-    name: "华尔街见闻"
-  - id: "thepaper"
+  - id: "thepaper"   - id: thepaper
     name: "澎湃新闻"
-  - id: "bilibili-hot-search"
-    name: "bilibili 热搜"
-  - id: "cls-hot"
-    name: "财联社热门"
   - id: "ifeng"
     name: "凤凰网"
-  - id: "tieba"
-    name   名字: "贴吧"
+  - id: "cankaoxiaoxi"
+    name: "参考消息"
+  - id: "sputniknewscn"
+    name: "卫星通讯社"
+  - id: "zaobao"
+    name: "联合早报"
+  - id: "mktnews"
+    name: "MKT新闻"
+  - id: "kaopu"
+    name: "靠谱新闻"
+
+  # === 财经投资类 ===
+  - id: "wallstreetcn-hot"   - id: wallstreetcn-hot
+    name: "华尔街见闻 最热"
+  - id: "wallstreetcn-quick"
+    name: "华尔街见闻 快讯"
+  - id: "wallstreetcn-news"
+    name: "华尔街见闻 最新"
+  - id: "cls-hot"   - id：“cls-hot”
+    name: "财联社热门"
+  - id: "gelonghui"
+    name: "格隆汇"
+  - id: "xueqiu"
+    name: "雪球"
+  - id: "jin10"
+    name: "金十数据"
+  - id: "fastbull"
+    name: "快讯通"
+
+  # === 社交/短视频/娱乐类 ===
   - id: "weibo"
-    name   名字: "微博"
+    name: "微博"
   - id: "douyin"
     name: "抖音"
-  - id: "zhihu"
+  - id: "bilibili-hot-search"- id：“哔哩哔哩-hot-search”
+    name: "bilibili 热搜"
+  - id: "tieba"
+    name: "贴吧"
+  - id: "zhihu"   - id：“知乎”
     name: "知乎"
+  - id: "hupu"
+    name: "虎扑"
+
+  # === 科技类平台 ===
+  - id: "ithome"
+    name: "IT之家"
+  - id: "juejin"
+    name: "掘金"
+  - id: "github"
+    name: "GitHub"
+  - id: "hackernews"
+    name: "Hacker News"
+  - id: "solidot"
+    name: "Solidot"
+  - id: "v2ex"
+    name: "V2EX"
+  - id: "nowcoder"
+    name: "牛客网"
+  - id: "pcbeta"
+    name: "远景论坛"
+  - id: "sspai"
+    name: "少数派"
+  - id: "producthunt"
+    name: "ProductHunt"
+
+  # === 其他/工具类 ===
+  - id: "chongbuluo"
+    name: "虫部落"
+
+  # ======================================================
+  # 暂时失败的渠道（可能需要修复或接口已变更）
+  # 备注：以下渠道在测试中抓取失败，已暂时注释
+  # 如需使用请检查API接口状态或联系维护团队
+  # ======================================================
+  
+  # 失败的综合新闻媒体类
+  # - id: "sina"
+  #   name: "新浪"           # 失败原因：接口可能已变更
+  # - id: "sohu" 
+  #   name: "搜狐"           # 失败原因：接口可能已变更
+  
+  # 失败的财经类
+  # - id: "ghxi"
+  #   name: "国海证券"       # 失败原因：接口可能已变更
+  
+  # 失败的社交/短视频类
+  # - id: "kuaishou"
+  #   name: "快手"           # 失败原因：接口可能已变更
+  # - id: "smzdm"
+  #   name: "什么值得买"     # 失败原因：接口可能已变更
+  
+  # 失败的科技类
+  # - id: "36kr"
+  #   name: "36氪"           # 失败原因：接口可能已变更
+  # - id: "linuxdo"
+  #   name: "LinuxDo"        # 失败原因：接口可能已变更
